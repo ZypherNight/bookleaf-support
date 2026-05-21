@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import { ShieldCheck, Paperclip } from 'lucide-react'
+import { BACKEND_URL } from '@/lib/api'
 
 interface Message {
   id: number
@@ -61,18 +62,18 @@ export default function ChatThread({ description, created_at, messages, authorNa
                   <div className="mt-4 animate-in fade-in slide-in-from-top-2">
                     {attachment_url.match(/\.(jpg|jpeg|png)$/i) ? (
                       <img
-                        src={`http://localhost:8001${attachment_url}`}
+                        src={`${BACKEND_URL}${attachment_url}`}
                         alt="Ticket attachment"
                         className="max-w-full rounded-2xl border border-slate-200 shadow-md"
                       />
                     ) : attachment_url.match(/\.pdf$/i) ? (
                       <embed
-                        src={`http://localhost:8001${attachment_url}`}
+                        src={`${BACKEND_URL}${attachment_url}`}
                         type="application/pdf"
                         className="w-full h-[600px] rounded-2xl border border-slate-200 shadow-md"
                       />
                     ) : (
-                      <a href={`http://localhost:8001${attachment_url}`} target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline text-sm font-semibold">
+                      <a href={`${BACKEND_URL}${attachment_url}`} target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline text-sm font-semibold">
                         Download Attachment
                       </a>
                     )}
