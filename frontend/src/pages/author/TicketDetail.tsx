@@ -10,7 +10,7 @@ import ReplyBox from '@/components/tickets/ReplyBox'
 export default function AuthorTicketDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { ticket, setTicket, loading: ticketLoading, refetch } = useTicket(id)
+  const { ticket, loading: ticketLoading, refetch } = useTicket(id)
   const [loading, setLoading] = useState(false)
   const [authorName, setAuthorName] = useState('Author')
 

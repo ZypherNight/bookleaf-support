@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Layout from '@/components/Layout'
 import { api } from '@/lib/api'
-import { Bot, Send, ChevronLeft, Loader2, Save, CheckCircle, Paperclip, UserCheck, ShieldAlert, AlertTriangle, User, Clock, FileText, UserMinus, Search, ChevronDown, ShieldCheck } from 'lucide-react'
+import { Bot, ChevronLeft, Loader2, Save, CheckCircle, Paperclip, UserCheck, ShieldAlert, AlertTriangle, User, Clock, FileText, UserMinus, Search, ChevronDown } from 'lucide-react'
 import { useTicket } from '@/hooks/useTickets'
 import ReplyBox from '@/components/tickets/ReplyBox'
 
@@ -25,7 +25,7 @@ export default function AdminTicketDetail() {
   const [isAssignOpen, setIsAssignOpen] = useState(false)
   const [assignSearch, setAssignSearch] = useState('')
 
-  const { ticket, setTicket, refetch: refetchTicket } = useTicket(id)
+  const { ticket, refetch: refetchTicket } = useTicket(id)
 
   useEffect(() => {
     if (ticket) {
