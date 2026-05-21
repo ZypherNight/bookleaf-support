@@ -16,6 +16,7 @@ frontend/npm-debug.log*
 .env
 backend/.env
 frontend/.env
+frontend/.env.example
 
 # IDE
 .idea/
