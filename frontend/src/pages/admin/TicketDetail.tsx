@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Layout from '@/components/Layout'
-import { api } from '@/lib/api'
+import { api, BACKEND_URL } from '@/lib/api'
 import { Bot, ChevronLeft, Loader2, Save, CheckCircle, Paperclip, UserCheck, ShieldAlert, AlertTriangle, User, Clock, FileText, UserMinus, Search, ChevronDown } from 'lucide-react'
 import { useTicket } from '@/hooks/useTickets'
 import ReplyBox from '@/components/tickets/ReplyBox'
@@ -177,13 +177,13 @@ export default function AdminTicketDetail() {
                   <div className="mt-4 animate-in fade-in slide-in-from-top-2">
                     {ticket.attachment_url.match(/\.(jpg|jpeg|png)$/i) ? (
                       <img
-                        src={`http://localhost:8001${ticket.attachment_url}`}
+                        src={`${BACKEND_URL}${ticket.attachment_url}`}
                         alt="Ticket attachment"
                         className="max-w-full rounded-2xl border border-slate-200 shadow-md"
                       />
                     ) : ticket.attachment_url.match(/\.pdf$/i) ? (
                       <embed
-                        src={`http://localhost:8001${ticket.attachment_url}`}
+                        src={`${BACKEND_URL}${ticket.attachment_url}`}
                         type="application/pdf"
                         className="w-full h-[600px] rounded-2xl border border-slate-200 shadow-md"
                       />

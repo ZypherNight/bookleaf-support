@@ -1,7 +1,11 @@
 import axios from 'axios'
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8001/api'
+
+export const BACKEND_URL = API_BASE.replace(/\/api$/, '')
+
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
+  baseURL: API_BASE
 })
 
 api.interceptors.request.use((config) => {
