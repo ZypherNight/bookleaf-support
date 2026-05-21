@@ -10,10 +10,10 @@ This is a full-stack web application designed to help BookLeaf operations scale 
 2. Create a virtual environment: `python -m venv venv`
 3. Activate it: `source venv/bin/activate`
 4. Install dependencies: `pip install "fastapi[standard]" sqlalchemy bcrypt "python-jose[cryptography]" openai`
-5. Create a `.env` file in the `backend/` directory with your database URL (optional, defaults to SQLite) and OpenAI key:
+5. Create a `.env` file in the `backend/` directory with your database URL (optional, defaults to SQLite) and gemini key:
    ```env
    DATABASE_URL="sqlite:///./bookleaf.db"
-   OPENAI_API_KEY="sk-your-key-here"
+   gemini_api_key="sk-your-key-here"
    ```
 6. Seed the database with the sample JSON: `python app/seed.py`
 7. Run the server: `uvicorn app.main:app --reload` (Runs on port 8000)
@@ -51,7 +51,7 @@ The database has been seeded with data from `bookleaf_sample_data.json`.
 - **Backend:** Python FastAPI + SQLAlchemy. We unified routes (e.g., `/api/tickets` instead of separate author/admin prefixes). The backend uses role-based access control (RBAC) dependencies (`get_current_author`, `get_current_admin`) to ensure data privacy. If an Author tries to hit an admin route, it cleanly throws a 403 Forbidden JSON error. Input validation is strictly handled by FastAPI's Pydantic schemas.
 
 ### AI Prompt Engineering & Knowledge Base
-The AI service (`ai_service.py`) uses `gpt-4o-mini`. The prompt is injected with the exact BookLeaf Knowledge Base provided (80/20 splits, 45-day payouts, free reprints with photo proof). It enforces strict JSON outputs for classification (`Category` and `Priority`), utilizing rules like "wrong ISBN is High priority". For drafting, it uses strict instructions to "own the fault", provide specifics, and use an empathetic tone.
+The AI service (`ai_service.py`) uses `gemini-3-flash`. The prompt is injected with the exact BookLeaf Knowledge Base provided (80/20 splits, 45-day payouts, free reprints with photo proof). It enforces strict JSON outputs for classification (`Category` and `Priority`), utilizing rules like "wrong ISBN is High priority". For drafting, it uses strict instructions to "own the fault", provide specifics, and use an empathetic tone.
 
 ### Cost Management
 To optimize OpenAI API costs, we split the AI logic into two steps:
