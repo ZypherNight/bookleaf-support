@@ -9,7 +9,7 @@ This is a full-stack web application designed to help BookLeaf operations scale 
 1. Open a terminal and navigate to the `backend` folder.
 2. Create a virtual environment: `python -m venv venv`
 3. Activate it: `source venv/bin/activate`
-4. Install dependencies: `pip install "fastapi[standard]" sqlalchemy bcrypt "python-jose[cryptography]" openai`
+4. Install dependencies: `pip install "fastapi[standard]" sqlalchemy bcrypt "python-jose[cryptography]" gemini`
 5. Create a `.env` file in the `backend/` directory with your database URL (optional, defaults to SQLite) and gemini key:
    ```env
    DATABASE_URL="sqlite:///./bookleaf.db"
