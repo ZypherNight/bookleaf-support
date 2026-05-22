@@ -50,7 +50,7 @@ export default function AuthorTicketDetail() {
     </Layout>
   )
 
-  const isResolved = ticket.status === 'Closed' || ticket.status === 'Resolved'
+  const isClosed = ticket.status === 'Closed'
 
   return (
     <Layout role="author">
@@ -70,11 +70,11 @@ export default function AuthorTicketDetail() {
               <div>
                 <div className="flex items-center gap-3 mb-3">
                   <span className={`px-3 py-1.5 rounded-full text-xs font-bold border flex items-center shadow-sm w-max ${
-                    isResolved
+                    ticket.status === 'Resolved' || ticket.status === 'Closed'
                       ? 'bg-emerald-50 text-emerald-700 border-emerald-200' 
                       : 'bg-amber-50 text-amber-700 border-amber-200'
                   }`}>
-                    {isResolved ? <CheckCircle className="w-3.5 h-3.5 mr-1.5" /> : <Clock className="w-3.5 h-3.5 mr-1.5" />}
+                    {ticket.status === 'Resolved' || ticket.status === 'Closed' ? <CheckCircle className="w-3.5 h-3.5 mr-1.5" /> : <Clock className="w-3.5 h-3.5 mr-1.5" />}
                     {ticket.status}
                   </span>
                   <span className="text-xs font-bold text-slate-400 tracking-wider">TICKET #{ticket.id}</span>
@@ -110,7 +110,7 @@ export default function AuthorTicketDetail() {
           />
 
           {/* Reply Box */}
-          {!isResolved && (
+          {!isClosed && (
             <ReplyBox 
               onSend={handleSendReply}
               loading={loading}
@@ -118,11 +118,11 @@ export default function AuthorTicketDetail() {
             />
           )}
 
-          {isResolved && (
+          {isClosed && (
             <div className="p-5 bg-white border-t border-slate-100 shrink-0">
               <div className="bg-slate-100/50 border border-slate-200 rounded-3xl p-6 text-center">
                 <CheckCircle className="w-10 h-10 text-emerald-500 mx-auto mb-3 opacity-50" />
-                <h3 className="font-bold text-slate-700 mb-1">This ticket is resolved.</h3>
+                <h3 className="font-bold text-slate-700 mb-1">This ticket is closed.</h3>
                 <p className="text-slate-500 text-sm">If you need further assistance, please open a new ticket.</p>
               </div>
             </div>
