@@ -5,7 +5,7 @@ backend/*.pyc
 backend/.pytest_cache/
 backend/bookleaf.db
 backend/uploads/
-
+docs/
 # Node
 frontend/node_modules/
 frontend/dist/

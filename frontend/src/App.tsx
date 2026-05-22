@@ -7,6 +7,14 @@ import NewTicket from '@/pages/author/NewTicket'
 import AdminDashboard from '@/pages/admin/Dashboard'
 import AdminTicketDetail from '@/pages/admin/TicketDetail'
 
+const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+  const token = localStorage.getItem('token')
+  if (!token) {
+    return <Navigate to="/login" replace />
+  }
+  return children
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -15,14 +23,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         
         {/* Author Routes */}
-        <Route path="/author" element={<AuthorDashboard />} />
-        <Route path="/author/tickets" element={<AuthorTickets />} />
-        <Route path="/author/tickets/new" element={<NewTicket />} />
-        <Route path="/author/tickets/:id" element={<AuthorTicketDetail />} />
+        <Route path="/author" element={<ProtectedRoute><AuthorDashboard /></ProtectedRoute>} />
+        <Route path="/author/tickets" element={<ProtectedRoute><AuthorTickets /></ProtectedRoute>} />
+        <Route path="/author/tickets/new" element={<ProtectedRoute><NewTicket /></ProtectedRoute>} />
+        <Route path="/author/tickets/:id" element={<ProtectedRoute><AuthorTicketDetail /></ProtectedRoute>} />
 
         {/* Admin Routes */}
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/tickets/:id" element={<AdminTicketDetail />} />
+        <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+        <Route path="/admin/tickets/:id" element={<ProtectedRoute><AdminTicketDetail /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   )

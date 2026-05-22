@@ -12,7 +12,7 @@ export default function NewTicket() {
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState<File | null>(null)
   const navigate = useNavigate()
-  
+
   useEffect(() => {
     api.get('/books').then(res => setBooks(res.data))
   }, [])
@@ -64,12 +64,12 @@ export default function NewTicket() {
         </button>
 
         <h1 className="text-3xl font-bold text-slate-900 mb-8">Submit a Support Query</h1>
-        
+
         <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Related Book (Optional)</label>
-              <select 
+              <select
                 value={bookId}
                 onChange={(e) => setBookId(e.target.value)}
                 className="block w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all"
@@ -80,10 +80,10 @@ export default function NewTicket() {
                 ))}
               </select>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Subject</label>
-              <input 
+              <input
                 type="text"
                 required
                 value={subject}
@@ -92,10 +92,10 @@ export default function NewTicket() {
                 className="block w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Detailed Description</label>
-              <textarea 
+              <textarea
                 required
                 rows={6}
                 value={description}
@@ -104,7 +104,7 @@ export default function NewTicket() {
                 className="block w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all resize-none"
               ></textarea>
             </div>
-            
+
             {/* File Upload */}
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Attachment (Optional)</label>
@@ -124,7 +124,7 @@ export default function NewTicket() {
                   <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-slate-300 border-dashed rounded-xl cursor-pointer bg-slate-50 hover:bg-slate-100 transition-colors">
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
                       <svg className="w-8 h-8 mb-4 text-slate-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                       </svg>
                       <p className="mb-2 text-sm text-slate-500"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                       <p className="text-xs text-slate-500">PNG, JPG, PDF (MAX. 5MB)</p>
@@ -134,16 +134,16 @@ export default function NewTicket() {
                 </div>
               )}
             </div>
-            
+
             <div className="pt-4 flex justify-end items-center border-t border-slate-100">
-              <button 
+              <button
                 type="button"
                 onClick={() => navigate('/author/tickets')}
                 className="px-6 py-3 text-slate-500 hover:text-slate-700 font-medium mr-4 transition-colors"
               >
                 Cancel
               </button>
-              <button 
+              <button
                 type="submit"
                 disabled={loading}
                 className="flex items-center px-6 py-3 bg-brand-600 text-white rounded-xl hover:bg-brand-500 transition-colors font-medium disabled:opacity-50 shadow-sm hover:shadow-md"
