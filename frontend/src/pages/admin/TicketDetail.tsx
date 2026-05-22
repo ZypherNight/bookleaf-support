@@ -70,6 +70,7 @@ export default function AdminTicketDetail() {
       category,
       priority
     })
+    await refetchTicket()
     setSaved(true)
     setTimeout(() => setSaved(false), 2000)
   }
@@ -229,7 +230,7 @@ export default function AdminTicketDetail() {
             </div>
 
             {/* Quick Reply Box */}
-            {ticket.status !== 'Closed' && ticket.status !== 'Resolved' ? (
+            {ticket.status !== 'Closed' ? (
               <ReplyBox
                 onSend={async (msg) => {
                   await handleSendReply(msg)
@@ -244,7 +245,7 @@ export default function AdminTicketDetail() {
                 <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 text-center">
                   <CheckCircle className="w-8 h-8 text-slate-400 mx-auto mb-2 opacity-50" />
                   <h3 className="font-bold text-slate-600 mb-1">Ticket Closed</h3>
-                  <p className="text-slate-500 text-sm">You cannot reply to a closed or resolved ticket.</p>
+                  <p className="text-slate-500 text-sm">You cannot reply to a closed ticket.</p>
                 </div>
               </div>
             )}
