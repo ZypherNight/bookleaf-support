@@ -172,8 +172,8 @@ export default function AuthorTickets() {
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-3">
                     <span className={`px-3 py-1.5 rounded-full text-xs font-bold border flex items-center shadow-sm w-max ${ticket.status === 'Resolved' || ticket.status === 'Closed'
-                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                        : 'bg-amber-50 text-amber-700 border-amber-200'
+                      ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                      : 'bg-amber-50 text-amber-700 border-amber-200'
                       }`}>
                       {ticket.status === 'Resolved' || ticket.status === 'Closed' ? <CheckCircle className="w-3.5 h-3.5 mr-1.5" /> : <Clock className="w-3.5 h-3.5 mr-1.5" />}
                       {ticket.status}

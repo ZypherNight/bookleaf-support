@@ -6,14 +6,14 @@ import { BookOpen, TrendingUp, IndianRupee, ShoppingBag, Award, Clock, Store, Bo
 export default function AuthorDashboard() {
   const [books, setBooks] = useState<any[]>([])
   const [authorName, setAuthorName] = useState('')
-  
+
   useEffect(() => {
     api.get('/books').then(res => setBooks(res.data))
     api.get('/users/me').then(res => {
       if (res.data && res.data.name) {
         setAuthorName(res.data.name.split(' ')[0])
       }
-    }).catch(() => {})
+    }).catch(() => { })
   }, [])
 
   const totalEarnings = books.reduce((sum, book) => sum + (book.total_royalty_earned || 0), 0)
@@ -29,7 +29,7 @@ export default function AuthorDashboard() {
           <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=2228&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay"></div>
           <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500/30 rounded-full blur-3xl -mt-24 -mr-24"></div>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-8 relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
             <div>
@@ -43,7 +43,7 @@ export default function AuthorDashboard() {
                 Track your publishing journey, monitor sales, and watch your royalties grow all in one place.
               </p>
             </div>
-            
+
             <button className="bg-brand-500 hover:bg-brand-400 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg flex items-center shadow-brand-500/30">
               <BookOpen className="w-5 h-5 mr-2" />
               Publish New Book
@@ -96,11 +96,11 @@ export default function AuthorDashboard() {
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Your Portfolio</h2>
         </div>
-        
+
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
           {books.map(book => (
             <div key={book.book_id} className="bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-brand-300 transition-all duration-300 overflow-hidden flex flex-col group">
-              
+
               {/* Fake Book Cover / Header Banner */}
               <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden shrink-0">
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-30 group-hover:scale-105 transition-transform duration-700"></div>
@@ -125,11 +125,10 @@ export default function AuthorDashboard() {
                         <p className="text-xs font-semibold text-slate-500">Published {new Date(book.publication_date).toLocaleDateString()}</p>
                       )}
                     </div>
-                    <span className={`px-3 py-1.5 rounded-full text-xs font-bold border shadow-sm shrink-0 ${
-                      book.status.includes('Live') 
-                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200' 
+                    <span className={`px-3 py-1.5 rounded-full text-xs font-bold border shadow-sm shrink-0 ${book.status.includes('Live')
+                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                         : 'bg-amber-50 text-amber-700 border-amber-200'
-                    }`}>
+                      }`}>
                       {book.status}
                     </span>
                   </div>
