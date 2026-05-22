@@ -53,7 +53,11 @@ class TicketService:
             raise NotFoundError("Ticket not found")
         if current_user.role != "admin" and ticket.author_id != current_user.id:
             raise UnauthorizedError()
-        return ticket
+            
+        if current_user.role == "admin":
+            return schemas.TicketDetail.model_validate(ticket)
+        else:
+            return schemas.AuthorTicket.model_validate(ticket)
 
     @staticmethod
     def create_ticket(db: Session, ticket_in: schemas.TicketCreate, current_user: models.User):
