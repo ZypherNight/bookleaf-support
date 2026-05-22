@@ -29,7 +29,7 @@ def create_ticket(ticket_in: schemas.TicketCreate, background_tasks: BackgroundT
     background_tasks.add_task(process_ticket_ai_task, new_ticket.id, new_ticket.subject, new_ticket.description, book_details)
     return new_ticket
 
-@router.get("/{ticket_id}", response_model=schemas.TicketDetail)
+@router.get("/{ticket_id}")
 def get_ticket(ticket_id: int, current_user: models.User = Depends(auth.get_current_user), db: Session = Depends(database.get_db)):
     return TicketService.get_ticket(db, ticket_id, current_user)
 
